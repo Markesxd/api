@@ -1,14 +1,13 @@
 const db = require('../database/connection');
 const { General } = require('../services');
 
-class InfoSaude extends General {
-  
-  constructor(info){
+class HealthInfo extends General {
+  constructor(info) {
     super(info);
     this.tableName = 'infoSaude';
   }
 
-  static init(){
+  static init() {
     const sql = `CREATE TABLE IF NOT EXISTS infoSaude(
       id int AUTO_INCREMENT,
       tipoSange varchar(5) NOT NULL,
@@ -23,4 +22,4 @@ class InfoSaude extends General {
   }
 }
 
-module.exports = InfoSaude
+module.exports = HealthInfo;

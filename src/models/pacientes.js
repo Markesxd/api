@@ -1,14 +1,14 @@
 const db = require('../database/connection');
-const {General} = require('../services');
+const { General } = require('../services');
 
-class Paciente extends General{
-  
-  constructor(paciente){
-    super(paciente);
+class Patient extends General {
+  constructor(patient) {
+    super(patient);
     this.tableName = 'pacientes';
   }
 
-  static init(){
+  static init() {
+    // Cria Tabela no baco de dados
     return new Promise((resolve, reject) => {
       const sql = `CREATE TABLE IF NOT EXISTS pacientes (
         cpf varchar(20),
@@ -22,16 +22,16 @@ class Paciente extends General{
         contatoAlternativo varchar(255),
         PRIMARY KEY (cpf)
       )`;
-      db.query(sql, null , (err, results) => {
-        if(err){
+      db.query(sql, null, (err, results) => {
+        if (err) {
           console.log(err);
           reject(err);
         } else {
           resolve(results);
         }
       });
-    })
+    });
   }
 }
 
-module.exports = Paciente;
+module.exports = Patient;

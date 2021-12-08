@@ -1,5 +1,3 @@
-const PacienteController = require('./pacienteController');
+const PatientController = require('./pacienteController');
 
-module.exports = {
-    PacienteController
-}
+module.exports = { PatientController };

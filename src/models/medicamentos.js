@@ -1,14 +1,13 @@
 const db = require('../database/connection');
 const { General } = require('../services');
 
-class Medicamento extends General {
-  
-  constructor(medicamento){
-    super(medicamento);
+class Medicament extends General {
+  constructor(medicament) {
+    super(medicament);
     this.tableName = 'medicamentos';
   }
 
-  static init(){
+  static init() {
     const sql = `CREATE TABLE IF NOT EXISTS medicamentos (
       id int AUTO_INCREMENT,
       nome varchar(255) NOT NULL,
@@ -22,4 +21,4 @@ class Medicamento extends General {
   }
 }
 
-module.exports = Medicamento;
+module.exports = Medicament;

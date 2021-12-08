@@ -1,14 +1,13 @@
 const db = require('../database/connection');
 const { General } = require('../services');
 
-class Atendimento extends General {
-  
-  constructor(atendimento){
-    super(atendimento);
+class Attendance extends General {
+  constructor(attendance) {
+    super(attendance);
     this.tableName = 'atendimentos';
   }
 
-  static init(){
+  static init() {
     const sql = `CREATE TABLE IF NOT EXISTS atendimentos (
       id int AUTO_INCREMENT,
       data date NOT NULL,
@@ -21,10 +20,10 @@ class Atendimento extends General {
       cpf_medico varchar(20),
       PRIMARY KEY (id),
       FOREIGN KEY (id_prontuario) REFERENCES prontuarios (id),
-      FOREIGN KEY (cpf_medico) REFERENCES medicos (cpf)      
-    )`
+      FOREIGN KEY (cpf_medico) REFERENCES medicos (cpf)
+    )`;
     db.query(sql);
   }
 }
 
-module.exports = Atendimento
+module.exports = Attendance;

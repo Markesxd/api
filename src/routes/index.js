@@ -1,6 +1,7 @@
 const router = require('express').Router();
-const paciente = require('./pacienteRouts');
 
-router.use('/paciente', paciente);
+const patient = require('./pacienteRouts');
+
+router.use('/paciente', patient);
 
 module.exports = router;
