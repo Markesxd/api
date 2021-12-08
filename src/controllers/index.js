@@ -1,3 +1,9 @@
-const PatientController = require('./pacienteController');
+const PatientController = require('./patientController');
+const DoctorController = require('./doctorController');
+const ManagerController = require('./managerController');
 
-module.exports = { PatientController };
+module.exports = { 
+    PatientController,
+    DoctorController,
+    ManagerController
+ };

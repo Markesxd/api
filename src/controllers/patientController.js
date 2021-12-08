@@ -7,7 +7,6 @@ class PatientController {
       const patients = await patient.get();
       res.json(patients);
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }
@@ -26,9 +25,8 @@ class PatientController {
     try {
       const patient = new Patient(req.body);
       await patient.save();
-      res.end();
+      res.status(201).end();
     } catch (err) {
-      console.log(err);
       next(err);
     }
   }

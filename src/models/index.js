@@ -1,20 +1,20 @@
-const Attendance = require('./atendimentos');
-const Exam = require('./exames');
-const Manager = require('./gerentes');
-const HealthInfo = require('./infosaude');
-const Medicament = require('./medicamentos');
-const Doctor = require('./medicos');
-const Patient = require('./pacientes');
-const MedicalRecords = require('./prontuarios');
+const Attendance = require('./attendance');
+const Exam = require('./exam');
+const Manager = require('./manager');
+const HealthInfo = require('./healthInfo');
+const Medicament = require('./medicament');
+const Doctor = require('./doctor');
+const Patient = require('./patient');
+const MedicalRecords = require('./medicalRecords');
 
 // A ordem dos modelos é essa para não dar erro de chave estrangeira
 module.exports = {
-  Attendance,
+  Patient,
   Doctor,
-  Exam,
-  HealthInfo,
   Manager,
   MedicalRecords,
+  Attendance,
+  Exam,
+  HealthInfo,
   Medicament,
-  Patient,
 };

@@ -1,10 +1,17 @@
 const Models = require('../models');
-
-const createTables = () => {
+const db = require('./connection');
+const createTables = async() => {
   const models = Object.keys(Models);
 
-  models.forEach((model) => {
-    Models[model].init();
+  models.forEach(async (model) => {
+    await Models[model].init();
   });
 };
-createTables();
+async function main(){
+  try {
+    await createTables();
+  } catch (error) {
+    console.log(error);
+  }
+}
+main();
