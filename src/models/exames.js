@@ -1,27 +1,33 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class exames extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      this.hasMany(models.prontuarios);
-    }
-  };
-  exames.init({
-    nome: DataTypes.STRING,
-    pedido: DataTypes.DATEONLY,
-    realizado: DataTypes.DATEONLY,
-    resultado: DataTypes.STRING,
-    local: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'exames',
-  });
-  return exames;
-};
+const db = require('../database/connection');
+const { General } = require('../services');
+
+class Exame extends General {
+  
+  constructor(exame){
+    super(exame);
+    this.tableName = 'exames';
+  }
+
+  static init(){
+    const sql = `CREATE TABLE IF NOT EXISTS exames(
+      id int AUTO_INCREMENT,
+      nome varchar(255) NOT NULL,
+      pedido date NOT NULL,
+      realizado date,
+      resultado text,
+      local varchar(255),
+      id_prontuario int,
+      PRIMARY KEY (id),
+      FOREIGN KEY (id_prontuario) REFERENCES prontuarios (id)
+    )`;
+    
+    db.query(sql);
+  }
+
+  static drop(){
+    const sql = `DROP TABLE exames`;
+    db.query(sql);
+  }
+}
+
+module.exports = Exame

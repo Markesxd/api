@@ -1,27 +1,26 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class infoSaude extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      this.belongsToMany(models.medicamentos);
-      this.hasOne(models.prontuario);
-    }
-  };
-  infoSaude.init({
-    tipoSangue: DataTypes.STRING,
-    cirurgias: DataTypes.STRING,
-    alergias: DataTypes.STRING,
-    doencas: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'infoSaude',
-  });
-  return infoSaude;
-};
+const db = require('../database/connection');
+const { General } = require('../services');
+
+class InfoSaude extends General {
+  
+  constructor(info){
+    super(info);
+    this.tableName = 'infoSaude';
+  }
+
+  static init(){
+    const sql = `CREATE TABLE IF NOT EXISTS infoSaude(
+      id int AUTO_INCREMENT,
+      tipoSange varchar(5) NOT NULL,
+      cirurgias varchar(255),
+      alergias varchar(255),
+      doencas varchar(255),
+      id_prontuario int,
+      PRIMARY KEY (id),
+      FOREIGN KEY (id_prontuario) REFERENCES prontuarios (id)
+    )`;
+    db.query(sql);
+  }
+}
+
+module.exports = InfoSaude

@@ -1,26 +1,21 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class prontuarios extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      this.belongsTo(models.infoSaude);
-      this.belongsToMany(models.exames);
-      this.hasOne(models.pacientes);
-      this.belongsToMany(models.atendimentos);
-    }
-  };
-  prontuarios.init({
-    nome: DataTypes.STRING
-  }, {
-    sequelize,
-    modelName: 'prontuarios',
-  });
-  return prontuarios;
-};
+const db = require('../database/connection');
+const { General } = require('../services');
+
+class Prontuario extends General{
+  constructor(prontuario){
+    super(prontuario);
+    this.tableName = 'prontuarios';
+  }
+
+    static init(){
+    const sql = `CREATE TABLE IF NOT EXISTS prontuarios (
+      id int AUTO_INCREMENT,
+      cpf_paciente varchar(20) NOT NULL,
+      PRIMARY KEY (id),
+      FOREIGN KEY (cpf_paciente) REFERENCES pacientes (cpf)
+      )`;
+    db.query(sql);
+  }
+}
+
+module.exports = Prontuario;
