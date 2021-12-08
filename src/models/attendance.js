@@ -37,8 +37,8 @@ class Attendance extends General {
   static getListByTime(initialTime, finalTime){
     return new Promise((resolve, reject) =>{
       const sql = `SELECT
-       (COUNT(DISTINCT cpf_medico) AS medicos, COUNT(DISTINCT cpf_paciente) AS pacientes, COUNT(id) AS atendimentos)
-       FROM ${this.tableName} WHERE data > ${initialTime} AND data < ${finalTime}`;
+       (COUNT(DISTINCT cpf_medico), COUNT(DISTINCT cpf_paciente), COUNT(id))
+       FROM atendimentos WHERE (data > ${initialTime}) AND (data < ${finalTime})`;
       db.query(sql, null, (err, results) => {
         if(err){
           reject(err);
