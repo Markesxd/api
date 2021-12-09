@@ -34,16 +34,16 @@ class Attendance extends General {
     });
   }
 
-  static getListByTime(initialTime, finalTime){
+  static getTimeReport(initialTime, finalTime){
     return new Promise((resolve, reject) =>{
       const sql = `SELECT
-       (COUNT(DISTINCT cpf_medico), COUNT(DISTINCT cpf_paciente), COUNT(id))
+       COUNT(DISTINCT cpf_medico) AS Medicos, COUNT(DISTINCT cpf_paciente) AS Pacientes, COUNT(id) AS Atendimentos
        FROM atendimentos WHERE (data > ${initialTime}) AND (data < ${finalTime})`;
       db.query(sql, null, (err, results) => {
         if(err){
           reject(err);
         } else {
-          resolve(results);
+          resolve(results[0]);
         }
       })
     });

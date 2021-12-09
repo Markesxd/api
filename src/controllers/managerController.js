@@ -5,7 +5,7 @@ class ManagerController {
     static async timeReport(req, res, next){
         try {
             const {initialDate, finalDate} = req.params
-            const report = await Attendance.getListByTime(initialDate, finalDate);
+            const report = await Attendance.getTimeReport(initialDate, finalDate);
             res.json(report);
         } catch (error) {
             next(error);
