@@ -5,7 +5,9 @@ const cors = require('cors');
 const port = process.env.PORT;
 const router = require('./routes');
 const { errorHandler } = require('./middlewares');
+const createTables = require('./database/createTables');
 
+createTables();
 const app = express();
 app.use(cors());
 app.use(express.json());

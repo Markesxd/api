@@ -7,11 +7,12 @@ const createTables = async() => {
     await Models[model].init();
   });
 };
-async function main(){
+async function base(){
   try {
     await createTables();
   } catch (error) {
     console.log(error);
   }
 }
-main();
+
+module.exports = base;
