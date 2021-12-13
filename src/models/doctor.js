@@ -20,13 +20,12 @@ class Doctor extends General {
         PRIMARY KEY (cpf)
       )`;
       db.query(sql, null, (err, results) => {
-        if(err) {
+        if (err) {
           reject(err);
         } else {
           resolve(results);
         }
       });
-
     });
   }
 }
