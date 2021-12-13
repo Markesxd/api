@@ -24,28 +24,27 @@ class Attendance extends General {
         FOREIGN KEY (cpf_medico) REFERENCES medicos (cpf)
       )`;
       db.query(sql, null, (err, result) => {
-        if(err){
+        if (err) {
           reject(err);
         } else {
           resolve(result);
         }
       });
-      
     });
   }
 
-  static getTimeReport(initialTime, finalTime){
-    return new Promise((resolve, reject) =>{
+  static getTimeReport(initialTime, finalTime) {
+    return new Promise((resolve, reject) => {
       const sql = `SELECT
        COUNT(DISTINCT cpf_medico) AS Medicos, COUNT(DISTINCT cpf_paciente) AS Pacientes, COUNT(id) AS Atendimentos
        FROM atendimentos WHERE (data > ${initialTime}) AND (data < ${finalTime})`;
       db.query(sql, null, (err, results) => {
-        if(err){
+        if (err) {
           reject(err);
         } else {
           resolve(results[0]);
         }
-      })
+      });
     });
   }
 }

@@ -1,9 +1,9 @@
+const router = require('express').Router();
 const { DoctorController } = require('../controllers');
 
-const router = require('express').Router();
-
 router
-.post('/', DoctorController.add)
-.get('/', DoctorController.getList)
+  .post('/', DoctorController.add)
+  .get('/', DoctorController.getList)
+  .get('/:cpf', DoctorController.getOne);
 
 module.exports = router;

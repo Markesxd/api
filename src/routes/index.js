@@ -6,9 +6,9 @@ const report = require('./reportRouts');
 const doctor = require('./doctorRouts');
 
 router
-.use('/paciente', patient)
-.use('/atendimento', attendance)
-.use('/relatorio', report)
-.use('/medico', doctor)
+  .use('/paciente', patient)
+  .use('/atendimento', attendance)
+  .use('/relatorio', report)
+  .use('/medico', doctor);
 
 module.exports = router;
